@@ -1,0 +1,7 @@
+-- Auto generated color theme for image at: https://i.ytimg.com/vi_webp/eXJqyCgVpjc/mqdefault.webp
+return {
+  general = {
+    ["col.active_border"] = "rgba(955B6CFF) rgba(D36572FF) rgba(DC728FFF) 45deg",
+    ["col.inactive_border"] = "rgba(955B6C66)",
+  },
+}

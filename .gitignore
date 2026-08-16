@@ -1,0 +1,19 @@
+# Secrets / credentials
+.env
+*.key
+*.pem
+credentials*
+secrets*
+
+# Caches
+.cache/
+*.cache
+
+# Logs
+*.log
+
+# Generated files
+*.pid
+
+# Personal/private files
+private/

@@ -1,0 +1,7 @@
+-- Auto generated color theme for image at: https://i1.sndcdn.com/artworks-ztgvVI8fjqhzocM1-cFVrJw-t80x80.jpg
+return {
+  general = {
+    ["col.active_border"] = "rgba(6FAED0FF) rgba(8DAAB7FF) rgba(8FB3CBFF) 45deg",
+    ["col.inactive_border"] = "rgba(6FAED066)",
+  },
+}

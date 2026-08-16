@@ -1,0 +1,7 @@
+-- Auto generated color theme for image at: https://i1.sndcdn.com/artworks-000145811820-tdcxea-t80x80.jpg
+return {
+  general = {
+    ["col.active_border"] = "rgba(6F6BCFFF) rgba(857AD7FF) rgba(9B87BBFF) 45deg",
+    ["col.inactive_border"] = "rgba(6F6BCF66)",
+  },
+}

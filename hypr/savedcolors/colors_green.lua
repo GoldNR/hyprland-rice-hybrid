@@ -1,0 +1,7 @@
+-- Auto generated color theme for image at: [Local wallpaper]
+return {
+  general = {
+    ["col.active_border"] = "rgba(656B5AFF) rgba(70736BFF) rgba(7C836DFF) 45deg",
+    ["col.inactive_border"] = "rgba(656B5A66)",
+  },
+}

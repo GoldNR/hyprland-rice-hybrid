@@ -1,0 +1,7 @@
+-- Auto generated color theme for image at: https://i.ytimg.com/vi/zJ9NHv9UIHI/mqdefault.jpg
+return {
+  general = {
+    ["col.active_border"] = "rgba(E99A71FF) rgba(592D9AFF) rgba(5D57C1FF) 45deg",
+    ["col.inactive_border"] = "rgba(E99A7166)",
+  },
+}

@@ -1,0 +1,7 @@
+-- Auto generated color theme for image at: https://i.ytimg.com/vi/co1QafXwo4g/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAncOMlDFU5jwlz8_EJITJPz1xaxQ
+return {
+  general = {
+    ["col.active_border"] = "rgba(5F1DD9FF) rgba(334AC7FF) rgba(924CC2FF) 45deg",
+    ["col.inactive_border"] = "rgba(5F1DD966)",
+  },
+}

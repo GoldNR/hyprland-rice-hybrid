@@ -1,0 +1,92 @@
+Advanced Network Configuration
+Alacritty
+Amberol
+Avahi SSH Server Browser
+Avahi VNC Server Browser
+Avahi Zeroconf Browser
+Azote
+Btrfs Assistant
+CMake
+COSMIC Files
+COSMIC System Monitor
+CachyOS Hello
+CachyOS Kernel Manager
+CachyOS Package Installer
+Calculator
+Clipboard manager
+Cloudflare One Client
+Code - OSS
+Color Profile Viewer
+CopyQ
+Crashed Processes Viewer
+Discord
+Discover
+Displays Settings
+Dolphin
+Easy Effects
+Emoji Selector
+Extensions
+Files
+Firefox
+Foot
+Foot Client
+Foot Server
+GTK Settings
+Goverlay
+Hardware Locality lstopo
+Heroic Games Launcher
+IBus Preferences
+Icon Browser
+Icon picker
+Info Center
+KDE System Settings
+Konsole
+LibreOffice
+LibreOffice Base
+LibreOffice Calc
+LibreOffice Draw
+LibreOffice Impress
+LibreOffice Math
+LibreOffice Writer
+LocalSend
+Ludusavi
+Lutris
+Manage Printing
+Meld
+Menu Editor
+Micro
+OBS Studio
+Oracle VirtualBox
+Proton VPN
+Protontricks
+Qt Assistant
+Qt D-Bus Viewer
+Qt Linguist
+Qt V4L2 test Utility
+Qt V4L2 video capture utility
+Qt Widgets Designer
+README file browser
+SchedExt GUI Manager
+Settings
+Shelly
+SoulseekQt
+Spectacle
+Steam
+System Monitor
+System Settings
+Text Editor
+TwintailLauncher
+VLC media player
+Vim
+Volume Control
+WWMI Mod Fixer
+Welcome Center
+Winetricks
+YAD settings
+btop++
+kitty
+nwg-panel Settings
+nwg-shell README
+nwg-shell Settings
+qBittorrent
+uuctl

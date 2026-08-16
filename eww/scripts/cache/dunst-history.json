@@ -1,0 +1,123 @@
+{
+	"type" : "aa{sv}",
+	"data" : [
+		[
+			{
+				"body" : {
+					"type" : "s",
+					"data" : "@everyone\nA hotfix is rolling out across all platforms.\nCheck the details and the status of the update's availability on your platform in the patch notes: https://pearlabyss.info/3RVwn7b"
+				},
+				"message" : {
+					"type" : "s",
+					"data" : "<b>⁨[CM] Ramos⁩ (⁨#announcements⁩, ⁨📢 OFFICIAL NEWS⁩)</b>\n@everyone\nA hotfix is rolling out across all platforms.\nCheck the details and the status of the update's availability on your platform in the patch notes: https://pearlabyss.info/3RVwn7b"
+				},
+				"summary" : {
+					"type" : "s",
+					"data" : "⁨[CM] Ramos⁩ (⁨#announcements⁩, ⁨📢 OFFICIAL NEWS⁩)"
+				},
+				"appname" : {
+					"type" : "s",
+					"data" : "discord"
+				},
+				"category" : {
+					"type" : "s",
+					"data" : ""
+				},
+				"default_action_name" : {
+					"type" : "s",
+					"data" : "default"
+				},
+				"icon_path" : {
+					"type" : "s",
+					"data" : ""
+				},
+				"id" : {
+					"type" : "i",
+					"data" : 1383
+				},
+				"timestamp" : {
+					"type" : "x",
+					"data" : 533497860
+				},
+				"timeout" : {
+					"type" : "x",
+					"data" : 8000000
+				},
+				"progress" : {
+					"type" : "i",
+					"data" : -1
+				},
+				"urgency" : {
+					"type" : "s",
+					"data" : "NORMAL"
+				},
+				"stack_tag" : {
+					"type" : "s",
+					"data" : ""
+				},
+				"urls" : {
+					"type" : "s",
+					"data" : "https://pearlabyss.info/3RVwn7b"
+				}
+			},
+			{
+				"body" : {
+					"type" : "s",
+					"data" : "IBus should be called from the desktop session in Wayland. For KDE, you can launch 'systemsettings' utility and go to \"Input & Output\" -> \"Keyboard\" -> \"Virtual Keyboard\" section and select \"IBus Wayland\" icon and click \"Apply\" button to configure IBus in Wayland. For other desktop sessions, you can run \"ibus start\" command. Please refer each document about the \"Wayland input method\" configuration. Before you configure the \"Wayland input method\", you should make sure that QT_IM_MODULE and GTK_IM_MODULE environment variables are unset in the desktop session."
+				},
+				"message" : {
+					"type" : "s",
+					"data" : "<b>IBus Notification</b>\nIBus should be called from the desktop session in Wayland. For KDE, you can launch 'systemsettings' utility and go to \"Input &amp; Output\" -> \"Keyboard\" -> \"Virtual Keyboard\" section and select \"IBus Wayland\" icon and click \"Apply\" button to configure IBus in Wayland. For other desktop sessions, you can run \"ibus start\" command. Please refer each document about the \"Wayland input method\" configuration. Before you configure the \"Wayland input method\", you should make sure that QT_IM_MODULE and GTK_IM_MODULE environment variables are unset in the desktop session."
+				},
+				"summary" : {
+					"type" : "s",
+					"data" : "IBus Notification"
+				},
+				"appname" : {
+					"type" : "s",
+					"data" : "ibus"
+				},
+				"category" : {
+					"type" : "s",
+					"data" : "wayland"
+				},
+				"default_action_name" : {
+					"type" : "s",
+					"data" : "default"
+				},
+				"icon_path" : {
+					"type" : "s",
+					"data" : ""
+				},
+				"id" : {
+					"type" : "i",
+					"data" : 2
+				},
+				"timestamp" : {
+					"type" : "x",
+					"data" : 28795949
+				},
+				"timeout" : {
+					"type" : "x",
+					"data" : 60000000
+				},
+				"progress" : {
+					"type" : "i",
+					"data" : -1
+				},
+				"urgency" : {
+					"type" : "s",
+					"data" : "NORMAL"
+				},
+				"stack_tag" : {
+					"type" : "s",
+					"data" : ""
+				},
+				"urls" : {
+					"type" : "s",
+					"data" : ""
+				}
+			}
+		]
+	]
+}
