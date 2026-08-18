@@ -118,9 +118,10 @@ int main(int argc, char* argv[]) {
 
     username = get_username();
     // Print all desktop entries in /usr/share/applications/
-    string entryDirs[3] = {"/usr/share/applications/",
+    string entryDirs[4] = {"/usr/share/applications/",
                            "/home/" + username + "/.local/share/applications",
-                           "/var/lib/flatpak/exports/share/applications"};
+                           "/var/lib/flatpak/exports/share/applications",
+                           "/home/" + username + "/.local/share/flatpak/exports/share/applications"};
     for (string directory : entryDirs) {
         if (filesystem::exists(directory))
             get_desktop_entries(directory);
