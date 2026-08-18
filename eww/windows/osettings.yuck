@@ -7,7 +7,7 @@
 (defwidget checkboxhyprctl [value changevalue]
   (eventbox
     :cursor "pointer"
-    :onclick "hyprctl keyword ${changevalue} ${value ? 'false' : 'true'} && scripts/hyprsettings tickle &"
+    :onclick "scripts/hyprsettings-toggle '${changevalue}' '${value ? 'false' : 'true'}' && scripts/hyprsettings tickle &"
     (box
       :class "osettings-checkbox-${value}"
       :halign "end"
@@ -424,7 +424,7 @@
                         )
                       )
                       (eventbox
-                        :onrightclick "hyprctl keyword input:sensitivity 0"
+                        :onrightclick "hyprctl eval 'hl.config({ input = { sensitivity = 0 } })'"
                         (box
                           :space-evenly false
                           :orientation "v"
@@ -437,7 +437,7 @@
                           (scale
                             :class "osettings-slider"
                             :value "${hyprjson.input_sensitivity * 50 + 50}"
-                            :onchange "hyprctl keyword input:sensitivity $(echo - | awk '{print {} / 50 - 1}') && scripts/hyprsettings tickle"
+                              :onchange "scripts/hyprsettings-toggle 'input:sensitivity' \"$(echo {} | awk '{print $1 / 50 - 1}')\" && scripts/hyprsettings tickle"
                           )
                         )
                       )

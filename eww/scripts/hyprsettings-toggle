@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+setting="$1"
+value="$2"
+
+case "$setting" in
+    input:force_no_accel)
+        hyprctl eval "hl.config({ input = { force_no_accel = $value } })"
+        ;;
+    input:touchpad:disable_while_typing)
+        hyprctl eval "hl.config({ input = { touchpad = { disable_while_typing = $value } } })"
+        ;;
+    input:touchpad:clickfinger_behavior)
+        hyprctl eval "hl.config({ input = { touchpad = { clickfinger_behavior = $value } } })"
+        ;;
+    decoration:blur:enabled)
+        hyprctl eval "hl.config({ decoration = { blur = { enabled = $value } } })"
+        ;;
+    decoration:blur:xray)
+        hyprctl eval "hl.config({ decoration = { blur = { xray = $value } } })"
+        ;;
+    input:sensitivity)
+        hyprctl eval "hl.config({ input = { sensitivity = $value } })"
+        ;;
+    *)
+        echo "Unknown Hyprland setting: $setting" >&2
+        exit 1
+        ;;
+esac
+
