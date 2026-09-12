@@ -27,6 +27,11 @@ hl.window_rule({
 
 hl.window_rule({ match = { class = "^(steam)$", title = "^(Friends List)$" }, float = true })
 
+hl.window_rule({
+    match = { class = "^(steam_app*|*.exe)$" },
+    float = true,
+})
+
 local modalMatches = {
     { title = "^(Open|Authentication Required|Add Folder to Workspace|Choose Files|Save As|Confirm to replace files|File Operation Progress)$" },
     { initial_title = "^(Open File)$" },
@@ -51,6 +56,16 @@ hl.window_rule({
     },
 })
 
+hl.window_rule({
+    name = "cosmic-glass",
+    match = {
+        class = "com.system76.CosmicMonitor|com.system76.CosmicFiles",
+    },
+    opacity = "0.88 override 0.88 override 1.0 override",
+})
+
+
+-- Bring focused window to top (works on non-maximized floating windows only)
 hl.on("window.active", function(w, active)
     if active == 1 then
         hl.dispatch(hl.dsp.window.bring_to_top({ window = w }))

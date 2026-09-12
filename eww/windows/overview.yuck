@@ -22,7 +22,7 @@
           (eventbox
             :onrightclick "scripts/selectwindow ${ws-window.address} '${EWW_CMD}' ${ws-window.workspace.id}"
             :onmiddleclick "hyprctl dispatch closewindow address:${ws-window.address}"
-            :onclick "scripts/focuswindow ${ws-window.address} ${ws-window.workspace.id} && scripts/toggle-overview.sh --close &"
+            :onclick "scripts/toggle-overview.sh --close && sleep 0.05 && scripts/focuswindow ${ws-window.address} ${ws-window.workspace.id} &"
             :onhover "${ws-window.class == 'workspace' ? '' : (EWW_CMD + ' update overview_hover_name=\'' + ws-window + '\'')}"
             (box
               :class "overview-background"

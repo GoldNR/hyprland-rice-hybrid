@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+while true; do
+  if command -v nvidia-smi &> /dev/null && nvidia-smi &> /dev/null; then
+    # NVIDIA
+    read -r gpuperc vramused vramtotal <<< "$(nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits | awk -F',' '{gsub(/ /,"",$0); print $1, $2, $3}')"
+    vramperc=$(printf '%.1f' "$(bc -l <<< "($vramused / $vramtotal) * 100")")
+    vramusedH=$(printf '%.1fG' "$(bc -l <<< "$vramused / 1000")")
+    vramtotalH=$(printf '%.1fG' "$(bc -l <<< "$vramtotal / 1000")")
+  else
+    # AMD (amdgpu sysfs)
+    card="$(ls /sys/class/drm/ 2>/dev/null | grep -E '^card[0-9]+$' | head -n1)"
+    busy_file="/sys/class/drm/${card}/device/gpu_busy_percent"
+    used_file="/sys/class/drm/${card}/device/mem_info_vram_used"
+    total_file="/sys/class/drm/${card}/device/mem_info_vram_total"
+
+    gpuperc="$( [[ -r "$busy_file" ]] && cat "$busy_file" || echo 0 )"
+
+    if [[ -r "$used_file" && -r "$total_file" ]]; then
+      vramusedB="$(cat "$used_file")"
+      vramtotalB="$(cat "$total_file")"
+      vramperc=$(printf '%.1f' "$(bc -l <<< "($vramusedB / $vramtotalB) * 100")")
+      vramusedH=$(printf '%.1fG' "$(bc -l <<< "$vramusedB / 1000000000")")
+      vramtotalH=$(printf '%.1fG' "$(bc -l <<< "$vramtotalB / 1000000000")")
+    else
+      vramperc=0; vramusedH="0G"; vramtotalH="0G"
+    fi
+  fi
+
+  echo '{ "percentage": '"${gpuperc:-0}"', "vram_used": "'"${vramusedH:-0G}"'", "vram_total": "'"${vramtotalH:-0G}"'", "vram_percentage": '"${vramperc:-0}"' }'
+
+  sleep 3
+done

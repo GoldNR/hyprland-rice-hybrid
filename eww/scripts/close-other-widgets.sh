@@ -2,7 +2,11 @@
 
 current="$1"
 
-if [[ "$current" != "osettings" ]]; then
+is_open() {
+    eww active-windows | grep -Fq "$1"
+}
+
+if [[ "$current" != "osettings" ]] && is_open osettings; then
     (
         eww update anim_open_ostg=false
         eww update rev_ostg=false
@@ -13,7 +17,7 @@ if [[ "$current" != "osettings" ]]; then
     ) &
 fi
 
-if [[ "$current" != "music" ]]; then
+if [[ "$current" != "music" ]] && is_open music; then
     (
         eww update anim_open_music=false
         eww update music_open=false
@@ -23,7 +27,7 @@ if [[ "$current" != "music" ]]; then
     ) &
 fi
 
-if [[ "$current" != "overview" ]]; then
+if [[ "$current" != "overview" ]] && is_open overview; then
     (
         eww close overview-dimmer
         eww close overview 2>/dev/null
@@ -32,7 +36,7 @@ if [[ "$current" != "overview" ]]; then
     ) &
 fi
 
-if [[ "$current" != "themer" ]]; then
+if [[ "$current" != "themer" ]] && is_open themer; then
     (
         eww update anim_open_themer=false
         eww update rev_themer=false
@@ -41,7 +45,7 @@ if [[ "$current" != "themer" ]]; then
     ) &
 fi
 
-if [[ "$current" != "onotify" ]]; then
+if [[ "$current" != "onotify" ]] && is_open onotify; then
     (
         eww update anim_open_ontf=false
         eww update rev_ontf=false
@@ -50,7 +54,7 @@ if [[ "$current" != "onotify" ]]; then
     ) &
 fi
 
-if [[ "$current" != "bottombar" ]]; then
+if [[ "$current" != "bottombar" ]] && is_open bottombar; then
     (
         eww update anim_open_bottombar=false
         eww update rev_bottombar=false

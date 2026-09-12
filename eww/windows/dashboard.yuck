@@ -108,8 +108,11 @@
                 ${anim_open_dash ? dash_curve_in : dash_curve_out}
                 ${rev_dash ? '' : 'margin-bottom: -1000px; margin-top: 1000px;'}
                 "
-                (label :xalign 0 :class "dash-quote-content clr3" :text "${quote_content[3]}")
-                (label :xalign 1 :class "dash-quote-author clr4" :text "${quote_author[3]}")
+                (label :xalign 0 :class "dash-resource-title clr3" :text "")
+                (systray
+                  :pack-direction "ltr"
+                  :icon-size 24
+                )
               )
             )
             (box ; Col 2

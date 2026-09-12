@@ -17,7 +17,7 @@ state=$(eww get open_overview)
 
 if [[ "$state" == "true" || "$1" == "--close" ]]; then
     eww close overview-dimmer &
-    eww close overview 2>/dev/null &
+    eww close overview 2>/dev/null
     eww update overview_query='' &
     eww update open_overview=false &
 else

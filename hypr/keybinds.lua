@@ -21,8 +21,8 @@ hl.bind(mainMod .. " + Space",     hl.dsp.exec_cmd("~/.config/eww/scripts/langua
 ---------------------------------
 -- Volume
 hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"),          { locked = true })
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),           { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),           { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+"),           { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"),           { locked = true, repeating = true })
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("~/.config/eww/scripts/volume osd &"),                  { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("~/.config/eww/scripts/volume osd &"),                  { locked = true, repeating = true })
 hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("~/.config/eww/scripts/volume osd &"),                  { locked = true })
@@ -107,6 +107,7 @@ hl.bind(mainMod .. " + Slash", hl.dsp.exec_cmd("pkill fuzzel || fuzzel --icon-th
 ------------------------
 -- VERIFY: "release" flag name, see note above
 hl.bind(mainMod .. " + CONTROL + R", hl.dsp.exec_cmd("pkill eww && eww daemon && eww open bar && eww open bottomline"), { release = true })
+hl.bind(mainMod .. " + CONTROL + K", hl.dsp.exec_cmd("eww close-all"))
 hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("~/.config/eww/scripts/toggle-overview.sh &"))
 hl.bind(mainMod .. " + O",   hl.dsp.exec_cmd("~/.config/eww/scripts/toggle-osettings.sh --keypress &"))
 hl.bind(mainMod .. " + CONTROL + O", hl.dsp.exec_cmd("~/.config/eww/scripts/toggle-osettings.sh --keypress &"))

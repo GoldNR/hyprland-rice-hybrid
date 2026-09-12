@@ -75,7 +75,7 @@ void getMonthDays() {
 
 void calcCalendar() {
     int monthDiff = (weekdayOfMonthFirst == 0 ? 0 : -1);
-    int dim = daysInLastMonth;
+    int dim = (weekdayOfMonthFirst == 0 ? daysInMonth : daysInLastMonth);
     int i = 0, j = 0;
     int toFill = (weekdayOfMonthFirst == 0
                       ? 1

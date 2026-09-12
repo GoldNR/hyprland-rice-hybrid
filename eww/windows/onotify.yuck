@@ -1,92 +1,3 @@
-(defwidget volume_mixer []
-  (box
-    :space-evenly false
-    :orientation "v"
-    ; :class "sliders"
-    (box
-      :orientation "h"
-      :space-evenly false
-      :spacing 10
-      (label
-        :halign "start"
-        :class "osettings-section-icon"
-        :text ""
-      )
-      (label
-        :halign "start"
-        :wrap true
-        :class "osettings-section"
-        :text "Volume mixer"
-      )
-    )
-    (for app in audiojson
-      (box
-        :orientation "v" :space-evenly false
-        (box
-          :orientation "h" :space-evenly false
-          :spacing 10
-          (image
-            :class "onotify-app-icon"
-            :path {app.icon}
-            :image-width 25
-            :image-height 25
-          )
-          (label
-            :xalign 0
-            :valign "center"
-            :class "onotify-app-name"
-            :limit-width 42
-            :text {app.name}
-          )
-        )
-        (box
-          :orientation "v"
-          :space-evenly false
-          (scroll
-            :vscroll false
-            :hscroll true
-            (box
-              :orientation "h"
-              ; :space-evenly false
-              (for ser in {app["volume"]}
-                (eventbox
-                  :onscroll "pactl set-sink-input-volume ${ser[0]} $(echo {} | sed -e \"s/up/+5/g\" -e \"s/down/-5/g\")%"
-                  :onrightclick "pactl set-sink-input-volume ${ser[0]} 100%"
-                  :onclick "pactl set-sink-input-volume ${ser[0]} 0%"
-                  (centerbox
-                    :space-evenly false
-                    :orientation "${app.count > 3 ? 'v' : 'h'}"
-                    :class "onotify-app-volbox"
-                    (label
-                      :xalign "${app.count > 3 ? '0.5' : '0'}"
-                      :class "onotify-app-ser"
-                      :style "
-                      ${app.count > 3 ? 'margin-bottom: 5px;' : 'padding: 0 5px;'}
-                      "
-                      :text "#${ser[0]}"
-                    )
-                    (box)
-                    (circular-progress
-                      :halign "${app.count > 3 ? 'center' : 'end'}"
-                      :value {ser[1] <= 100 ? ser[1] : 100}
-                      :class "onotify-app-vol-circle"
-                      :thickness 4
-                      :start-at 75
-                      :width 45
-                      :height 45
-                      (label :class "onotify-app-text" :text "${ser[1]}")
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
-    )
-  )
-)
-
 (defwidget onotify []
   (box
     :orientation "v"
@@ -221,15 +132,13 @@
           ; :halign "fill"
           :class "onotify-content"
           :valign "fill"
-          :style "min-height: 317px;"
+          :style "min-height: 861px;"
           (box
             :halign "fill"
             :class "osettings-scroll-bg"
             :space-evenly false
             :spacing 20
             :orientation "v"
-            ; Volume mixer
-            ; (volume_mixer)
             ; Notifications
             (box
               :space-evenly false :orientation "v"
@@ -281,13 +190,13 @@
                   (button :valign "center"
                     :class "osettings-tag-material"
                     :tooltip "Refresh"
-                    :onclick "dunstctl history > $XDG_CACHE_HOME/dunst-history.json &"
+                    :onclick "eww update notifications=\"$(~/.config/eww/scripts/notifications --once)\" &"
                     "Refresh"
                   )
                   (button :valign "center"
                     :class "osettings-tag-material"
                     :tooltip "Pause/Resume Notifications"
-                    :onclick "scripts/notifications toggle && eww update notifications='$(scripts/notifications --once)' &"
+                    :onclick "scripts/notifications toggle && eww update notifications=\"$(~/.config/eww/scripts/notifications --once)\" &"
                     {notif_icons.paused ? "" : "Pause"}
                   )
                   (button :valign "center"
@@ -298,46 +207,129 @@
                   )
                 )
               )
-              (box
-                :class "container"
-                :orientation "v"
-                :space-evenly false
-                (for i in notifications
-                  (eventbox
-                    :onclick "dunstctl history-pop ${i.id} && dunstctl action 0 && dunstctl close"
+              (scroll
+                :vscroll true :hscroll false
+                :height 300
+                (box
+                  :class "container"
+                  :orientation "v"
+                  :space-evenly false
+                  (box
+		    :visible "${arraylength(notifications) == 0}"
+		    :class "onotify-app-empty"
+		    :halign "center"
+		    (label
+		      :class "onotify-app-empty-text"
+		      :text "No notifications for now"
+		    )
+		  )  
+                  (for i in notifications
                     (box
                       :class "notification"
                       :orientation "v" :space-evenly false
                       :width 300
                       (centerbox
                         :space-evenly false
-                        (label
-                          :xalign 0
+        	        (label
+                	  :xalign 0
                           :wrap true
                           :class "summary"
                           :text {i.summary}
-                        )
+        	        )
                         (label)
                         (label
                           :xalign 1
                           :wrap true
                           :class "appname"
                           :text {i.appname}
-                        )
+        	        )
                       )
                       (label
-                        :xalign 0
+        	        :xalign 0
                         :wrap true
                         :class "body"
-                        :text {i.body}
-                      )
+        	        :text {i.body}
+                      )  
                     )
                   )
-                )
+	        )
               )
             )
-          )
-        )
+          
+        ; Weather
+	(box
+	  :space-evenly false :orientation "v" :spacing 10
+	  (box
+	    :orientation "h" :space-evenly false :spacing 10
+	    (label :halign "start" :class "osettings-section-icon" :text "")
+	    (label :halign "start" :class "osettings-section" :text "Weather forecast")
+	  )
+	(box
+	  :space-evenly false :orientation "v" :spacing 10
+	  (label :halign "start" :class "weather-location" :text {weatherjson.location == "null" ? "Loading..." : weatherjson.location})
+	  (box
+	    :orientation "h" :space-evenly false :spacing 8
+	    (label
+	      :class "weather-current-temp"
+	      :text {weather_unit_f
+	        ? (weatherjson.current_temp_f == "null"
+		  ? "Loading..."
+		  : "${weatherjson.current_temp_f}°")
+	        : (weatherjson.current_temp_c == "null"
+		  ? "Loading..."
+		  : "${weatherjson.current_temp_c}°"
+		)
+	      }
+	    )
+
+	    (box
+	      :class "weather-unit-toggle"
+	      :orientation "h" :space-evenly false :spacing 4
+	      :valign "start"
+	      (button
+		:class "weather-unit-btn ${weather_unit_f == false ? "weather-unit-btn-active" : ""}"
+		:onclick "eww update weather_unit_f=false"
+		"C"
+	      )
+	      (label :text "/")
+	      (button
+		:class "weather-unit-btn ${weather_unit_f == true ? "weather-unit-btn-active" : ""}"
+		:onclick "eww update weather_unit_f=true"
+		"F"
+	      )
+	    )
+	  )
+	  (label
+	    :halign "start" :wrap true
+	    :class "weather-current-desc"
+	    :text {weatherjson.days[weather_selected_day].desc}
+	  )
+	  (box
+	    :orientation "h" :space-evenly false
+	    (for day in {weatherjson.days}
+	      (eventbox
+		:onclick "eww update weather_selected_day=${day.idx}"
+		(box
+		  :spacing 5
+		  :class "weather-day-chip ${day.idx == weather_selected_day ? 'weather-day-chip-selected' : ''}"
+		  :orientation "v" :space-evenly false :halign "center"
+		  (label :class "weather-day-weekday" :text {day.weekday})
+		  (label :class "weather-day-emoji" :text {day.emoji})
+		  (label :class "weather-day-max" :text "${weather_unit_f ? day.max_f : day.max_c}°")
+		  (label :class "weather-day-min" :text "${weather_unit_f ? day.min_f : day.min_c}°")
+		)
+	      )
+	    )
+	  )
+	  (image
+	    :class "weather-graph"
+	    :path "/tmp/weather_graph_${weather_unit_f ? "f" : "c"}_${weather_selected_day}.svg"
+	    :image-width 460
+	    :image-height 180
+	  )
+	)
+	)
+        
         ; Calendar
         (box
           :space-evenly false :orientation "v"
@@ -377,8 +369,6 @@
           )
           (box
             :space-evenly false :orientation "v"
-            (eventbox
-              :onscroll "scripts/scrollmonth {} &"
               (box
                 :orientation "v"
                 :space-evenly false
@@ -408,10 +398,7 @@
             )
           )
         )
-        (box		; fills up empty space
-            :height 18
-            :class "osettings-scroll-bg-colored"
-        ) 
+        )
       )
     )
   )

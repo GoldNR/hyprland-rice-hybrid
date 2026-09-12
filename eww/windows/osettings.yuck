@@ -329,6 +329,106 @@
                   )
                 )
               )
+                            ; Volume mixer
+              (revealer
+                :reveal "${matches('volume mixer per app volume audio applications sound mixer',oquery)}"
+                :transition "slidedown"
+                :duration "200ms"
+                (box
+                  :space-evenly false
+                  :orientation "v"
+                  (box
+                    :orientation "h"
+                    :space-evenly false
+                    :spacing 10
+                    (label
+                      :halign "start"
+                      :class "osettings-section-icon"
+                      :text ""
+                    )
+                    (label
+                      :halign "start"
+                      :wrap true
+                      :class "osettings-section"
+                      :text "Volume mixer"
+                    )
+                  )
+                  (box
+		    :visible "${arraylength(audiojson) == 0}"
+		    :class "onotify-app-empty"
+		    :halign "center"
+		    (label
+		      :class "onotify-app-empty-text"
+		      :text "No app is playing audio"
+		    )
+		  )
+                  (for app in audiojson
+                    (box
+                      :orientation "v" :space-evenly false
+                      (box
+                        :orientation "h" :space-evenly false
+                        :spacing 10
+                        (image
+                          :class "onotify-app-icon"
+                          :path {app.icon}
+                          :image-width 25
+                          :image-height 25
+                        )
+                        (label
+                          :xalign 0
+                          :valign "center"
+                          :class "onotify-app-name"
+                          :limit-width 42
+                          :text {app.name}
+                        )
+                      )
+                      (box
+                        :orientation "v"
+                        :space-evenly false
+                        (scroll
+                          :vscroll true
+                          :hscroll false
+                          :height "${app.count > 3 ? 96 : 72}"
+                          (box
+                            :orientation "h"
+                            (for ser in {app["volume"]}
+                              (eventbox
+                                :onscroll "pactl set-sink-input-volume ${ser[0]} $(echo {} | sed -e \"s/up/+5/g\" -e \"s/down/-5/g\")%"
+                                :onrightclick "pactl set-sink-input-volume ${ser[0]} 100%"
+                                :onclick "pactl set-sink-input-volume ${ser[0]} 0%"
+                                (centerbox
+                                  :space-evenly false
+                                  :orientation "${app.count > 3 ? 'v' : 'h'}"
+                                  :class "onotify-app-volbox"
+                                  (label
+                                    :xalign "${app.count > 3 ? '0.5' : '0'}"
+                                    :class "onotify-app-ser"
+                                    :style "
+                                    ${app.count > 3 ? 'margin-bottom: 5px;' : 'padding: 0 5px;'}
+                                    "
+                                    :text "#${ser[0]}"
+                                  )
+                                  (box)
+                                  (circular-progress
+                                    :halign "${app.count > 3 ? 'center' : 'end'}"
+                                    :value {ser[1] <= 100 ? ser[1] : 100}
+                                    :class "onotify-app-vol-circle"
+                                    :thickness 4
+                                    :start-at 75
+                                    :width 45
+                                    :height 45
+                                    (label :class "onotify-app-text" :text "${ser[1]}")
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
               ; Mouse
               (revealer
                 :reveal "${matches('mouse and touchpad touch pad mouse speed mouse acceleration osu raw input sensitivity disable while typing disable_while_typing tap to click clickfinger_behavior',oquery)}"
@@ -911,6 +1011,64 @@
                         :class "osettings-btn osettings-btn-destructive"
                         :onclick "systemctl poweroff &"
                         "Shutdown"
+                      )
+                    )
+                  )
+                )
+              )
+              ; Noctalia
+              (revealer
+                :reveal "${matches('noctalia settings control center',oquery)}"
+                :transition "slidedown"
+                :duration "200ms"
+                (box
+                  :space-evenly false
+                  :orientation "v"
+                  (box
+                    :orientation "h"
+                    :space-evenly false
+                    :spacing 10
+                    (label
+                      :halign "start"
+                      :class "osettings-section-icon"
+                      :text ""
+                    )
+                    (label
+                      :halign "start"
+                      :wrap true
+                      :class "osettings-section"
+                      :text "Noctalia"
+                    )
+                  )
+                  (revealer
+                    :reveal "${matches('noctalia settings',oquery)}"
+                    :transition "slidedown"
+                    :duration "200ms"
+                    (box
+                      :orientation "v"
+                      :space-evenly false
+                      (button
+                        :halign "fill"
+                        :wrap true
+                        :class "osettings-btn osettings-btn-neutral"
+                        :onclick "noctalia msg settings-toggle"
+                        "Settings"
+                      )
+                    )
+                  )
+                  (revealer
+                    :reveal "${matches('noctalia control center',oquery)}"
+                    :transition "slidedown"
+                    :duration "200ms"
+                    (box
+                      :orientation "v"
+                      :space-evenly false
+                      (button
+                        :halign "fill"
+                        :wrap true
+                        :class "osettings-btn osettings-btn-neutral"
+                        :onclick "noctalia msg panel-toggle control-center"
+                        "Control Center"
                       )
                     )
                   )

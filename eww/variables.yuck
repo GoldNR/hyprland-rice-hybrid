@@ -116,11 +116,17 @@
 (defpoll day_only :interval "5s" "date '+%e' | sed 's/ //g'")
 (defpoll time12 :interval "10s" `date '+%l:%M %^P' | sed 's/am/AM/g' | sed 's/pm/PM/g'`)
 
+; Weather
+(defpoll weatherjson :interval "30m" :initial "{}" "scripts/weather")
+(defvar weather_selected_day 0)
+(defvar weather_unit_f false)
+
 ; Listeners
 (deflisten airplane "scripts/airplane")
 (deflisten battery "scripts/battery")
 (deflisten bluetooth "scripts/bluetooth")
 (deflisten brightness "scripts/brightness")
+(deflisten gpu "scripts/gpu")
 (deflisten memory "scripts/memory")
 (deflisten music "scripts/music")
 (deflisten music_cover "scripts/music cover")

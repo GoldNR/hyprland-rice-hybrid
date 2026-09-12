@@ -371,8 +371,6 @@ $bgdetail2: $onTertiary;
 }
 
 .osettings-scroll-bg-colored {
-    padding-left: 28px;
-    padding-right: 28px;
     background-color: shade($colorbarbg, 5%);
 }
 
@@ -561,6 +559,15 @@ $bgdetail2: $onTertiary;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
+.onotify-app-empty {
+  padding: 1rem 0;
+}
+
+.onotify-app-empty-text {
+  opacity: 0.6;
+  font-style: italic;
+}
+
 .onotify-app-name {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -682,4 +689,67 @@ $bgdetail2: $onTertiary;
     color: #000000;
     margin-bottom: 8px;
     margin-right: 5px;
+}
+
+
+.weather-location {
+  font-family: 'Torus Notched';
+  font-size: 14pt;
+}
+
+.weather-current-temp {
+  font-size: 32pt;
+  font-weight: bold;
+}
+
+.weather-unit-btn {
+  font-family: 'Torus Notched';
+  font-size: 14pt;
+  padding: 2px 6px;
+  border-radius: 6px;
+  opacity: 0.5;
+}
+
+.weather-unit-btn-active {
+  opacity: 1;
+  background-color: shade($colorbarbg, 10%);
+}
+
+.weather-current-desc {
+  font-family: 'Torus Notched';
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.weather-day-chip {
+  border-radius: 12px;
+  padding: 8px 6px;
+}
+
+.weather-day-chip-selected {
+  background-color: $secondaryContainer;
+}
+
+.weather-day-weekday {
+  font-size: 10pt;
+  font-weight: bold;
+}
+
+.weather-day-emoji {
+  font-size: 14pt;
+}
+
+.weather-day-max {
+  font-size: 11pt;
+  font-weight: bold;
+}
+
+.weather-day-min {
+  font-size: 10pt;
+  opacity: 0.6;
+}
+
+.weather-graph {
+  margin-top: 8px;
 }

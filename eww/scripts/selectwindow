@@ -7,7 +7,7 @@ if [[ $selected == "_none" ]] || [[ $selected == "" ]]; then
   eval "$2 update selected=$1"
   selected=$(eval $2 get selected)
 else
-  hyprctl dispatch movetoworkspacesilent $3,address:$selected
+  hyprctl dispatch "hl.dsp.window.move({ workspace = $3, window = \"address:$selected\", follow = false })"
 
   eval "$2 update selected=_none"
   selected=$(eval $2 get selected)

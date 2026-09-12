@@ -8,6 +8,8 @@ secrets*
 # Caches
 .cache/
 *.cache
+eww/scripts/cache/
+eww/eww_covers/cover_art
 
 # Logs
 *.log

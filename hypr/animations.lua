@@ -9,9 +9,9 @@ hl.curve("funky", { type = "bezier", points = { { 0.46, 0.35 }, { -0.2, 1.2 } } 
 hl.animation({
     leaf = "windows",
     enabled = true,
-    speed = 2,
+    speed = 3,
     bezier = "md3_decel",
-    style = "slide",
+    style = "popin 0%",
 })
 hl.animation({
     leaf = "border",
